@@ -1,0 +1,9 @@
+.hover-green {
+  @apply hover:text-green transition-colors duration-300;
+}
+.burger {
+  @apply absolute top-2/4 left-0 -translate-y-2/4 block h-0.5 w-5 bg-darkPrimary rounded-lg after:absolute after:block after:top-1 after:left-0 after:h-0.5 after:w-5 after:bg-darkPrimary after:rounded-lg after:content-[''] before:absolute before:block before:-top-1 before:left-0 before:h-0.5 before:w-5 before:bg-darkPrimary before:rounded-lg before:content-[''] transition-all duration-300 ease-in-out;
+}
+.burger.active {
+  @apply bg-transparent after:top-0 after:rotate-45 after:transition-transform after:duration-300 after:ease-in-out before:top-0 before:-rotate-45  before:transition-transform before:duration-300 before:ease-in-out;
+}

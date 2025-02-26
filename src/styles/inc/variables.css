@@ -1,0 +1,16 @@
+:root {
+  /* sizes */
+
+  --half: 50%;
+  --full: 100%;
+
+  /* colors */
+  --background: #ffffff;
+  --foreground: #171717;
+}
+@theme {
+  /* sizes */
+
+  --half: 50%;
+  --full: 100%;
+}
