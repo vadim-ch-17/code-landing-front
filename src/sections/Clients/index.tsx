@@ -12,31 +12,39 @@ const Clients = async () => {
   const { data } = await client.query({
     query,
   });
-  const { title, subtitle, clients } = getSectionContent(
-    data,
-    "our_clients"
-  ) as OurClients;
+  try {
+    if (!data) {
+      throw new Error("Section content is empty or not found");
+    }
+    const { title, subtitle, clients } = getSectionContent(
+      data,
+      "our_clients"
+    ) as OurClients;
 
-  return (
-    <div className="container py-6 md:py-8 lg:py-10">
-      <Heading level="h2" classes="text-center  mb-2">
-        {title}
-      </Heading>
-      <Paragraph classes="text-center">{subtitle}</Paragraph>
-      <div className="cliets-container flex flex-wrap max-w-[1152px] mx-auto justify-center gap-8 md:gap-20 lg:gap-[136px] mt-4">
-        {clients.length &&
-          clients.map((client, index) => (
-            <Image
-              key={index}
-              src={getFullURL(client.logo.url)}
-              height="48"
-              width="48"
-              alt="Icon our client"
-            />
-          ))}
+    return (
+      <div className="container py-6 md:py-8 lg:py-10">
+        <Heading level="h2" classes="text-center  mb-2">
+          {title || ""}
+        </Heading>
+        <Paragraph classes="text-center">{subtitle}</Paragraph>
+        <div className="cliets-container flex flex-wrap max-w-[1152px] mx-auto justify-center gap-8 md:gap-20 lg:gap-[136px] mt-4">
+          {clients.length &&
+            clients.map((client, index) => (
+              <Image
+                key={index}
+                src={getFullURL(client.logo.url)}
+                height="48"
+                width="48"
+                alt="Icon our client"
+              />
+            ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 export default Clients;

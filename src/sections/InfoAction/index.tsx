@@ -22,7 +22,7 @@ const InfoAction = async ({ fragment, sectionName }: InfoActionProps) => {
     data,
     sectionName
   ) as InfoActionType;
-  console.log(image);
+
   const imgUrl: string = image && image.url ? getFullURL(image.url) : "";
   return (
     <div className="container py-6 md:py-8 lg:py-10 flex flex-col md:flex-row gap-8 md:gap-[50px]">
@@ -39,7 +39,7 @@ const InfoAction = async ({ fragment, sectionName }: InfoActionProps) => {
         </Heading>
         <Paragraph type="sm">{description}</Paragraph>
         {button && (
-          <Button as="button" classes="md:w-fit">
+          <Button as="button" classes="sm:w-fit justify-center">
             {button.text}
           </Button>
         )}
