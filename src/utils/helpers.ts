@@ -1,3 +1,3 @@
 export const getFullURL = (url: string) => {
-  return `${process.env.CMS_URL}${url}`;
+  return url ? `${process.env.CMS_URL}${url}` : "";
 };

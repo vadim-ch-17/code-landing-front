@@ -15,7 +15,7 @@ const Banner = async () => {
     data,
     "main"
   ) as Main;
-
+  const imgUrl: string = image && image.url ? getFullURL(image.url) : "";
   return (
     <div className="bg-silver py-8 md:py-14 lg:py-24">
       <div className="container">
@@ -34,7 +34,7 @@ const Banner = async () => {
             </Button>
           </div>
           <Image
-            src={getFullURL(image.url)}
+            src={imgUrl}
             className="object-cover order-1 md:order-2 mx-auto md:mx-0"
             alt={title}
             width={391}

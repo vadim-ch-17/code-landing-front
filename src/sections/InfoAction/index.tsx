@@ -17,14 +17,17 @@ const InfoAction = async ({ fragment, sectionName }: InfoActionProps) => {
   const { data } = await client.query({
     query,
   });
+  if (!data) return null;
   const { title, description, image, button } = getSectionContent(
     data,
     sectionName
   ) as InfoActionType;
+  console.log(image);
+  const imgUrl: string = image && image.url ? getFullURL(image.url) : "";
   return (
     <div className="container py-6 md:py-8 lg:py-10 flex flex-col md:flex-row gap-8 md:gap-[50px]">
       <Image
-        src={getFullURL(image.url)}
+        src={imgUrl}
         className="mx-auto"
         alt={title}
         width={441}

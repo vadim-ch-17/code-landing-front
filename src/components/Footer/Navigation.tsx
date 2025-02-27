@@ -12,13 +12,23 @@ interface NavigationItem {
   items: NavItem[];
 }
 const Navigation = async () => {
-  const { data } = await client.query({
-    query: GET_FOOTER_NAVIGATION,
-    variables: { navigationIdOrSlug: "footer-navigation", type: "TREE" },
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_FOOTER_NAVIGATION,
+      variables: { navigationIdOrSlug: "footer-navigation", type: "TREE" },
+    });
 
-  //   console.dir(data);
-  const { renderNavigation } = data;
+    if (!data || !data.renderNavigation) {
+      return null;
+    }
+    return Nav(data.renderNavigation);
+  } catch (error) {
+    console.error("Error fetching footer navigation:", error);
+    return null;
+  }
+};
+
+const Nav = (renderNavigation: NavigationItem[]) => {
   return (
     <div className="flex flex-col md:flex-row gap-4 md:gap-7">
       {renderNavigation.map((item: NavigationItem, idx: number) => (

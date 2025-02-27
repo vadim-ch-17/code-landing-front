@@ -38,7 +38,9 @@ const CaringMarketing = async () => {
             className="flex flex-col items-center flex-[1_1_300px] max-w-[368px] max-h-[366px] w-full h-full relative pb-10">
             <Image
               className="mb-4 rounded-md object-cover"
-              src={getFullURL(card.image.url)}
+              src={
+                card.image && card.image.url ? getFullURL(card.image.url) : ""
+              }
               alt={"Image card"}
               width={368}
               height={266}

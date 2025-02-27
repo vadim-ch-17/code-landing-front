@@ -20,13 +20,17 @@ const Footer = async () => {
   });
 
   const { global } = data;
-  //   console.log(global.footer);
+  // console.log(global.footer);
+  const imgUrl: string =
+    global.footer.logo && global.footer.logo.url
+      ? getFullURL(global.footer.logo.url)
+      : "";
   return (
     <div className="bg-darkPrimary pt-16 pb-[74px] text-silver">
       <div className="container flex flex-wrap gap-10 md:gap-[40px] lg:gap-[80px] ">
         <div className="flex flex-col gap-6 md:gap-10 sm:min-w-[350px]">
           <Image
-            src={getFullURL(global.footer.logo.url)}
+            src={imgUrl}
             className="max-w-[160] h-auto md:max-w-[191px]"
             alt="Logo"
             width={191}

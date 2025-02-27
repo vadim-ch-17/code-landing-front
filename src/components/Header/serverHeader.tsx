@@ -15,12 +15,21 @@ interface ServerHeaderProps {
 }
 
 const ServerHeader = async ({ children }: ServerHeaderProps) => {
-  const { data } = await client.query({
-    query: GET_HEADER,
-    variables: { navigationIdOrSlug: "header-navigation" },
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_HEADER,
+      variables: { navigationIdOrSlug: "header-navigation" },
+    });
 
-  return <>{children(data)}</>;
+    if (!data || !data.renderNavigation) {
+      return <div>No navigation data available</div>;
+    }
+
+    return <>{children(data)}</>;
+  } catch (error) {
+    console.error("Error fetching header navigation:", error);
+    return <div>Error fetching navigation data</div>;
+  }
 };
 
 export default ServerHeader;
